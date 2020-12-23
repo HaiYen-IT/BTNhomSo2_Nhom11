@@ -1,0 +1,610 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Home.Master.cs" Inherits="Project.Site1" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title>Home</title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+    
+    <link rel="stylesheet" href="fonts/fontawesome-free-5.15.1-web/css/all.min.css">
+    <style>
+body{
+    margin: 0;
+    padding: 0;
+    font-family: Arial;
+    background-color:lightgray;
+}
+
+#banner {
+    width: 100%;
+    height: 150px;
+    top: 0;
+    left: 0;
+    background-color: rgb(57, 122, 195);
+    padding: 0;
+    margin: 0;
+    border-bottom: 2px solid rgb(114, 166, 225);
+}
+.Logo {
+    width: 122px;
+    height: 122px;
+    margin-left: 180px;
+    margin-right: 100px;
+    margin-top: 14px;
+    margin-bottom: 14px;
+}
+
+.Chu {
+    width: 437px;
+    height: 119px;
+    margin-right: 100px;
+    margin-bottom: 15px;
+    margin-top: 15px;
+}
+
+.HuyHieu {
+    width: 207px;
+    height: 110px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+#menu {
+    background-position: initial;
+    height: 30px;
+    background-image: initial;
+    background-size: initial;
+    background-repeat-x: initial;
+    background-repeat-y: initial;
+    background-attachment: initial;
+    background-origin: initial;
+    background-clip: initial;
+    background-color: rgb(49, 113, 185);
+    background-color: #397ac3;
+    margin-bottom: 7px;
+    background-repeat: repeat;
+    margin-left: -30px;
+    margin-top: -13px;
+
+    
+}
+header, nav{
+    /* canh giữa cách lề mỗi bên 10% */
+    /*margin: 5px 5px;*/
+    font-size: 13px;
+    font-family:Arial;        
+}
+        nav{
+            background: #397ac3; /*tô màu cho menu cha*/
+            /*border-radius: 5px;*/ /* bo góc */
+        }
+        nav ul{
+            display: flex;
+            font-weight: bold;
+        }
+        nav> ul li{
+            list-style: none; /* bỏ dấu chấm mặc định của li */
+            /* kẻ đường bên trái và bên phải của li */
+            border-right: 1px solid #ccc;
+            border-left:1px solid #333;
+        }
+        nav> ul li a{
+            display: block;
+            padding: 5px;
+            line-height: 2;
+            color: #f1f2f3;
+            text-decoration: none;
+        }
+        nav ul li:first-child {
+            border-left: none; /* bỏ đường kè trái của phần tử đầu tiên */
+        }
+        nav> ul li:first-child a{
+            border-bottom-left-radius: 5px;
+            border-top-left-radius: 5px;
+        }
+        /* Khi hover đến li, tô màu cho thẻ a */
+        nav ul li:hover>a{
+            background: red;
+            opacity: .7;
+            color: yellow;
+        }
+        /*menu con*/
+        /*Ẩn các menu con cấp 1,2,3*/
+        nav li ul{
+            display: none;
+            min-width: 350px;
+            position: absolute;
+        }
+        nav li>ul li{
+            width: 100%;
+            border: none;
+            border-bottom: 1px solid #ccc;
+            background: #999;
+            text-align: left;
+        }
+        nav li>ul li:first-child a{
+            border-bottom-left-radius: 0px;
+            border-top-left-radius: 0px;
+        }
+        nav li>ul li:last-child {
+            border-bottom-left-radius: 5px;
+            border-bottom-right-radius: 5px;
+        }
+        nav li>ul li:last-child a{
+            border-bottom-left-radius: 5px;
+            border-bottom-right-radius: 5px;
+        }
+        /*khi hover thì hiện menu con*/
+        nav  li:hover > ul{
+            display:  block;
+        }
+        /*Hiển thị menu con cấp 2,3,4 bên cạnh phải*/
+        nav > ul li > ul li >ul{
+            margin-left: 352px;
+            margin-top: -50px;
+        }
+
+/*#menu ul {
+    list-style: none;
+    line-height: 40px;
+    margin: 0;
+}   */ 
+
+/*#menu1 li {
+    float: left;
+    margin: 0;
+}*/
+/*#menu .menu1 ul li a ul li a {
+    line-height: 2;
+}*/
+#menu .menu1{
+    margin-left: 175px;
+}
+#menu .menu1 ul li a{
+    margin-right: 5px;
+    font-size: 13px;
+    line-height: 40px;
+    color: white;
+    font-weight: bold; 
+    /*padding-left: 10px;*/
+}
+
+/*#menu ul li a {
+    padding-right: 15px;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;   
+}*/
+
+/*#menu ul li a:hover {
+   color: black;
+   text-decoration: underline;
+}  */ 
+/*#menu #menu2 li a{
+    
+}*/
+/*#menu #menu2 li a{  
+    
+    margin-right: 0; 
+    float: right;
+    text-decoration: underline;
+    list-style:none;
+    display: inline-block;
+}*/
+#clockTop{
+    height: 30px;
+    width: 1000px;
+    background-color:cadetblue;
+    top: 0;
+    line-height: 30px;
+    font-size: 14px;
+    margin: 0 auto 10px;
+    text-indent: 10px;
+    color: white;
+    
+}
+#txtTimKiem{
+    margin-left: 90px;
+}
+
+#menumiddle a img{
+    margin-left: 130px;
+    width: 1000px;
+    height: 372px;
+    margin-bottom: 0;
+}
+#menubottom{
+    width: 1000px;
+    margin: 0 auto;
+    
+}
+#menubottom{
+    width: 1000px;
+    height: 106px;
+    background-color: white;
+}
+#menubottom table{
+    border: 1px solid gray;
+    /*background-color: white;*/
+    border-collapse:collapse;
+    height:106px;
+}
+#menubottom table tr td{
+    height: 90px;
+    text-align: center;
+    width: 111px;
+}
+#menubottom table tr td a{
+    list-style: none;
+    text-decoration: none;
+    color: black;
+    font-size: 14px;
+}
+#mainContent{
+    width: 1000px;
+    margin: 5px auto;
+}
+#rightContent{
+    width: 320px;
+    float: right;
+    background-color: white;
+    border: 1px solid #ba530e;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+#leftContent{
+    width: 670px;
+    float: left;
+    background-color: white;
+    border: 1px solid #ba530e;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+#noidungPhai{
+    padding: 10px 15px;
+    text-align:justify; 
+}
+#noidungChinh{
+    padding: 10px 15px;
+    text-align:justify; 
+}
+#noidungChinh ul{
+    margin: 20px 15px 20px 10px;
+}
+#noidungChinh ul li a{
+    color:darkslategrey;
+    font-weight: bold;
+    text-decoration:none;
+}
+#noidungChinh ul li a:hover{
+    color:brown;
+    text-decoration:underline;
+}
+#leftContent h1{
+    margin: 0;
+    padding: 5px 5px;
+    font-size: 16px;
+    font-weight: bold;
+    background-color: saddlebrown;
+    color: white;
+}
+#rightContent h1{
+    margin: 0;
+    padding: 5px 5px;
+    font-size: 16px;
+    font-weight: bold;
+    background-color: saddlebrown;
+    color: white;
+}
+
+#footer{
+    clear:both;
+    width: 100%;
+    height: 80px;
+    background-color: rgb(57, 122, 195);
+    margin-left:auto;
+    margin-right:auto;
+    bottom: 0;
+    box-sizing: border-box;
+}
+#footerContent{
+    margin-left: 173px;
+    padding: 10px;
+    color: white;
+    font-size: 14px;
+    line-height: 1.5;
+    /*display:inline-block;*/
+    
+}
+    </style>
+    <script>
+        function getTime() {
+            var today = new Date();
+            var date = "Thứ " + (today.getDay() + 1) + " ngày " +today.getDate() + " tháng " + (today.getMonth() + 1) + " năm " + today.getFullYear();
+            document.write(date);
+        }
+    </script>
+</head>
+<body>
+    <form id="Home" runat="server">
+        <div id ="header">
+           <div id ="banner">
+               <img alt="Trường Đại học Vinh" class="Logo" src="Images/download.png" />
+               <img alt="Trường Đại học Vinh" class="Chu" src="Images/Chu.png" />
+               <img alt="Trường Đại học Vinh" class="HuyHieu" src="Images/huyhieu.png" />
+           </div> 
+            <div id ="menu">
+                <nav>
+                    <ul>
+                        <asp:Repeater ID="rpt_cha" runat="server" OnItemDataBound ="rpt_cha_DataBound">
+                                    <ItemTemplate>
+                                        <li><a href ='BaiVietaspx.aspx?id=<%# Eval("ID") %>'><%# Eval("TenDanhMuc") %></a>
+                                            <asp:Literal ID="ltl_ID" Text='<%# Eval("ID") %>' visible ="false" runat="server"></asp:Literal>
+                                            <asp:Repeater ID="rpt_con" runat="server">
+                                                <HeaderTemplate>
+                                                    <ul>
+                                                </HeaderTemplate>
+                                                <ItemTemplate>
+                                                    <li><a href ='#'><%# Eval("TenDanhMuc") %></a></li>
+                                                </ItemTemplate>
+                                                <FooterTemplate>
+                                                    </ul>
+                                                </FooterTemplate>
+                                            </asp:Repeater>
+                                        </li>         
+                                    </ItemTemplate>
+                            
+                           </asp:Repeater>
+                        <%  
+                            if ((Boolean)Session["admin"] == false)
+                            {
+                            %>
+                                <li><a href="Login.aspx">ĐĂNG NHẬP</a></li>
+                        <%  
+                            }
+                            else
+                            {
+                            %>
+                                <li><a href="Logout.aspx">THOÁT</a></li>
+                                <li><a href ="ThemDuLieu.aspx">THÊM BÀI VIẾT</a></li>
+                            
+                        <%} %>
+                </ul>
+            </nav>
+                <%--<ul id ="menu1">
+                    <li><a href = #>Giới thiệu | </a></li>
+                    <li><a href = #>Hội đồng trường | </a></li>
+                    <li><a href = #>Ban giám hiệu | </a></li>
+                    <li><a href = #>Khoa - Viện | </a></li>
+                    <li><a href = #>Phòng ban | </a></li>
+                    <li><a href = #>Trung tâm - Trạm | </a></li>
+                    <li><a href = #>Tổ chức - Đoàn thể | </a></li>
+                    <li><a href = #>Trường trực thuộc | </a></li>
+                    <li><a href = #>Liên hệ</a></li>
+                </ul>--%>  
+            <%--<asp:Menu ID="Menu1" runat="server" Orientation ="Horizontal" CssClass ="menu1" BackColor="#397ac3" DynamicHorizontalOffset="2" Font-Names="Arial" Font-Size="0.5em" ForeColor="#284E98" StaticSubMenuIndent="5px">
+                <DynamicHoverStyle BackColor="#284E98" ForeColor="White" />
+                <DynamicMenuItemStyle HorizontalPadding="3px" VerticalPadding="2px" />
+                <DynamicMenuStyle BackColor="#B5C7DE" />
+                <DynamicSelectedStyle BackColor="#507CD1" />
+                <DynamicItemTemplate>
+                    <%# Eval("Text") %>
+                </DynamicItemTemplate>
+                <Items>
+                <asp:MenuItem Text ="GIỚI THIỆU" Value="" NavigateUrl="~/GioiThieu.aspx" >
+                </asp:MenuItem>
+                <asp:MenuItem Text ="CƠ CẤU TỔ CHỨC" Value="" NavigateUrl="~/GioiThieu.aspx" >
+                    <asp:MenuItem Text ="Đảng ủy" Value="da" NavigateUrl ="http://danguy.vinhuni.edu.vn/"></asp:MenuItem>
+                    <asp:MenuItem Text ="Hội đồng trường" Value="hd" ></asp:MenuItem>
+                    <asp:MenuItem Text ="Ban giám hiệu" Value="bg" ></asp:MenuItem>
+                    <asp:MenuItem Text ="Các tổ chức đoàn thể" Value="tc" >
+                        <asp:MenuItem Text="Công đoàn" Value="Công đoàn"></asp:MenuItem>
+                        <asp:MenuItem Text="Đoàn thanh niên" Value="Đoàn thanh niên"></asp:MenuItem>
+                        <asp:MenuItem Text="Hội sinh viên" Value="Hội sinh viên"></asp:MenuItem>
+                        <asp:MenuItem Text="Hội cựu chiến binh" Value="Hội cựu chiến binh"></asp:MenuItem>
+                    </asp:MenuItem>
+                    <asp:MenuItem Text ="Các khoa - viện đào tạo" Value="kv" >
+                        <asp:MenuItem Text="Khoa Giáo dục" Value="Khoa Giáo dục"></asp:MenuItem>
+                        <asp:MenuItem Text="Khoa Kinh tế" Value="Khoa Kinh tế"></asp:MenuItem>
+                        <asp:MenuItem Text="Khoa Sư phạm Ngoại Ngữ" Value="Khoa Sư phạm Ngoại Ngữ"></asp:MenuItem>
+                        <asp:MenuItem Text="Viện Sư phạm Tự Nhiên" Value="Viện Sư phạm Tự Nhiên"></asp:MenuItem>
+                        <asp:MenuItem Text="Viện Công nghệ Hóa Sinh - Môi trường" Value="Viện Công nghệ Hóa Sinh - Môi trường"></asp:MenuItem>
+                        <asp:MenuItem Text="Viện Khoa học Xã hội và Nhân văn" Value="Viện Khoa học Xã hội và Nhân văn"></asp:MenuItem>
+                        <asp:MenuItem Text="Khoa Giáo dục Thể chất" Value="Khoa Giáo dục Thể chất"></asp:MenuItem>
+                        <asp:MenuItem Text="Khoa Luật" Value="Khoa Luật"></asp:MenuItem>
+                        <asp:MenuItem Text="Khoa Xây dựng" Value="Khoa Xây dựng"></asp:MenuItem>
+                        <asp:MenuItem Text="Viện Kỹ thuật và Công nghệ" Value="Viện Kỹ thuật và Công nghệ"></asp:MenuItem>
+                        <asp:MenuItem Text="Viện Sư phạm Xã hội" Value="Viện Sư phạm Xã hội"></asp:MenuItem>
+                        <asp:MenuItem Text="Viện Nông nghiệp và Tài nguyên" Value="Viện Nông nghiệp và Tài nguyên"></asp:MenuItem>
+                    </asp:MenuItem>
+                    <asp:MenuItem Text="Các phòng ban" Value="Các phòng ban">
+                        <asp:MenuItem Text="Văn phòng Đảng - Hội đồng Trường - Đoàn thể" Value="Văn phòng Đảng - Hội đồng Trường - Đoàn thể"></asp:MenuItem>
+                        <asp:MenuItem Text="Ban Quản lý Cơ sở 2" Value="Ban Quản lý Cơ sở 2"></asp:MenuItem>
+                        <asp:MenuItem Text="Phòng CTCT-HSSV" Value="Phòng CTCT-HSSV"></asp:MenuItem>
+                        <asp:MenuItem Text="Phòng Đào tạo" Value="Phòng Đào tạo"></asp:MenuItem>
+                        <asp:MenuItem Text="Phòng Đào tạo Sau đại học" Value="Phòng Đào tạo Sau đại học"></asp:MenuItem>
+                        <asp:MenuItem Text="Phòng Hành chính Tổng họp" Value="Phòng Hành chính Tổng họp"></asp:MenuItem>
+                        <asp:MenuItem Text="Phòng Kế hoạch - Tài chính" Value="Phòng Kế hoạch - Tài chính"></asp:MenuItem>
+                        <asp:MenuItem Text="Phòng Khoa học và Hợp tác quốc tế" Value="Phòng Khoa học và Hợp tác quốc tế"></asp:MenuItem>
+                        <asp:MenuItem Text="Phòng Quản trị và Đầu tư" Value="Phòng Quản trị và Đầu tư"></asp:MenuItem>
+                        <asp:MenuItem Text="Phòng Thanh tra - Pháp chế" Value="Phòng Thanh tra - Pháp chế"></asp:MenuItem>
+                        <asp:MenuItem Text="Phòng Tổ chức Cán bộ" Value="Phòng Tổ chức Cán bộ"></asp:MenuItem>
+                        <asp:MenuItem Text="Nhà Xuất bản Đại học Vinh" Value="Nhà Xuất bản Đại học Vinh"></asp:MenuItem>
+                    </asp:MenuItem>
+                    <asp:MenuItem Text="Các trung tâm, trạm" Value="Các trung tâm, trạm">
+                        <asp:MenuItem Text="Trung tâm Công nghệ Thông tin" Value="Trung tâm Công nghệ Thông tin"></asp:MenuItem>
+                        <asp:MenuItem Text="Trung tâm Đảm bảo chất lượng" Value="Trung tâm Đảm bảo chất lượng"></asp:MenuItem>
+                        <asp:MenuItem Text="Trung tâm Dịch vụ, HTSV&amp;QHDN" Value="Trung tâm Dịch vụ, HTSV&amp;QHDN"></asp:MenuItem>
+                        <asp:MenuItem Text="Trung tâm Giáo dục thường xuyên" Value="Trung tâm Giáo dục thường xuyên"></asp:MenuItem>
+                        <asp:MenuItem Text="Trung tâm GDQP&amp;AN Trường DHV" Value="Trung tâm GDQP&amp;AN Trường DHV"></asp:MenuItem>
+                        <asp:MenuItem Text="Trung tâm Nội trú" Value="Trung tâm Nội trú"></asp:MenuItem>
+                        <asp:MenuItem Text="Trung tâm TT-TV Nguyễn Thúc Hào" Value="Trung tâm TT-TV Nguyễn Thúc Hào"></asp:MenuItem>
+                        <asp:MenuItem Text="Trung tâm Thực hành - Thí nghiệm" Value="Trung tâm Thực hành - Thí nghiệm"></asp:MenuItem>
+                        <asp:MenuItem Text="Trung tâm Nghiên cứu-KNST" Value="Trung tâm Nghiên cứu-KNST"></asp:MenuItem>
+                        <asp:MenuItem Text="Trung tâm Kiểm định CLGD" Value="Trung tâm Kiểm định CLGD"></asp:MenuItem>
+                        <asp:MenuItem Text="Trung tâm Bồi dưỡng NVSP" Value="Trung tâm Bồi dưỡng NVSP"></asp:MenuItem>
+                        <asp:MenuItem Text="Trạm Y tế" Value="Trạm Y tế"></asp:MenuItem>
+                    </asp:MenuItem>
+                    <asp:MenuItem Text="Các trường trực thuộc" Value="Các trường trực thuộc">
+                        <asp:MenuItem Text="Trường THPT Chuyên" Value="Trường THPT Chuyên"></asp:MenuItem>
+                        <asp:MenuItem Text="Trường Thực hành Sư phạm" Value="Trường Thực hành Sư phạm"></asp:MenuItem>
+                    </asp:MenuItem>
+                    <asp:MenuItem Text="Các văn phòng đại diện" Value="Các văn phòng đại diện">
+                        <asp:MenuItem Text="Văn phòng đại diện tại TpHCM" Value="Văn phòng đại diện tại TpHCM"></asp:MenuItem>
+                        <asp:MenuItem Text="Văn phòng đại diện tại Thanh Hóa" Value="Văn phòng đại diện tại Thanh Hóa"></asp:MenuItem>
+                    </asp:MenuItem>
+                    <asp:MenuItem Text="Các hội đồng, ban tư vấn" Value="Các hội đồng, ban tư vấn">
+                        <asp:MenuItem Text="Hội đồng Khoa học và Đào tạo" Value="Hội đồng Khoa học và Đào tạo"></asp:MenuItem>
+                        <asp:MenuItem Text="Hội đồng Thi đua Khen thưởng" Value="Hội đồng Thi đua Khen thưởng"></asp:MenuItem>
+                        <asp:MenuItem Text="Hội đồng Chức danh Giáo sư cơ sở" Value="Hội đồng Chức danh Giáo sư cơ sở"></asp:MenuItem>
+                        <asp:MenuItem Text="Ban Chế độ chính sách" Value="Ban Chế độ chính sách"></asp:MenuItem>
+                        <asp:MenuItem Text="Nhóm tư vấn Chương trình CDIO" Value="Nhóm tư vấn Chương trình CDIO"></asp:MenuItem>
+                    </asp:MenuItem>
+                </asp:MenuItem>
+
+                    <asp:MenuItem Text="TUYỂN SINH" Value="TUYỂN SINH">
+                        <asp:MenuItem Text="Đại học chính quy" Value="Đại học chính quy"></asp:MenuItem>
+                        <asp:MenuItem Text="Sau đại học" Value="Sau đại học"></asp:MenuItem>
+                        <asp:MenuItem Text="Vừa làm vừa học" Value="Vừa làm vừa học"></asp:MenuItem>
+                        <asp:MenuItem Text="Đào tạo từ xa" Value="Đào tạo từ xa"></asp:MenuItem>
+                        <asp:MenuItem Text="THPT Chuyên" Value="THPT Chuyên"></asp:MenuItem>
+                        <asp:MenuItem Text="Thực hành Sư phạm" Value="Thực hành Sư phạm"></asp:MenuItem>
+                        <asp:MenuItem Text="Đào tạo ngắn hạn" Value="Đào tạo ngắn hạn"></asp:MenuItem>
+                    </asp:MenuItem>
+                    <asp:MenuItem Text="ĐÀO TẠO" Value="ĐÀO TẠO">
+                        <asp:MenuItem Text="Đại học chính quy" Value="Đại học chính quy"></asp:MenuItem>
+                        <asp:MenuItem Text="Sau đại học" Value="Sau đại học"></asp:MenuItem>
+                        <asp:MenuItem Text="Vừa làm vừa học" Value="Vừa làm vừa học"></asp:MenuItem>
+                        <asp:MenuItem Text="Đào tạo từ xa" Value="Đào tạo từ xa"></asp:MenuItem>
+                        <asp:MenuItem Text="THPT Chuyên" Value="THPT Chuyên"></asp:MenuItem>
+                        <asp:MenuItem Text="Thực hành Sư phạm" Value="Thực hành Sư phạm"></asp:MenuItem>
+                        <asp:MenuItem Text="Đào tạo ngắn hạn" Value="Đào tạo ngắn hạn"></asp:MenuItem>
+                    </asp:MenuItem>
+                    <asp:MenuItem Text="KH &amp; HTQT" Value="KH &amp; HTQT">
+                        <asp:MenuItem Text="Khoa học Công nghệ" Value="Khoa học Công nghệ">
+                            <asp:MenuItem Text="Đề tài dự án" Value="Đề tài dự án"></asp:MenuItem>
+                            <asp:MenuItem Text="Hội nghị - Hội thảo" Value="Hội nghị - Hội thảo"></asp:MenuItem>
+                            <asp:MenuItem Text="Công bố khoa học" Value="Công bố khoa học"></asp:MenuItem>
+                            <asp:MenuItem Text="Seminar" Value="Seminar"></asp:MenuItem>
+                            <asp:MenuItem Text="Mẫu biểu" Value="Mẫu biểu"></asp:MenuItem>
+                        </asp:MenuItem>
+                        <asp:MenuItem Text="Hợp tác quốc tế" Value="Hợp tác quốc tế">
+                            <asp:MenuItem Text="Đối tác" Value="Đối tác"></asp:MenuItem>
+                            <asp:MenuItem Text="Chương trình hợp tác" Value="Chương trình hợp tác"></asp:MenuItem>
+                        </asp:MenuItem>
+                    </asp:MenuItem>
+                    <asp:MenuItem Text="TẠP CHÍ KHOA HỌC" Value="TẠP CHÍ KHOA HỌC">
+                        <asp:MenuItem Text="Tôn chỉ và mục đích" Value="Tôn chỉ và mục đích"></asp:MenuItem>
+                        <asp:MenuItem Text="Các số đã xuất bản" Value="Các số đã xuất bản"></asp:MenuItem>
+                        <asp:MenuItem Text="Ban biên tập" Value="Ban biên tập"></asp:MenuItem>
+                        <asp:MenuItem Text="Thông tin về Tạp chí" Value="Thông tin về Tạp chí"></asp:MenuItem>
+                        <asp:MenuItem Text="Thông tin dành cho Tác giả" Value="Thông tin dành cho Tác giả"></asp:MenuItem>
+                    </asp:MenuItem>
+                    <asp:MenuItem Text="BA CÔNG KHAI" Value="BA CÔNG KHAI">
+                        <asp:MenuItem Text="Chất lượng giáo dục" Value="Chất lượng giáo dục"></asp:MenuItem>
+                        <asp:MenuItem Text="Đảm bảo chất lượng" Value="Đảm bảo chất lượng"></asp:MenuItem>
+                        <asp:MenuItem Text="Tài chính" Value="Tài chính"></asp:MenuItem>
+                        <asp:MenuItem Text="Báo cáo thường niên" Value="Báo cáo thường niên"></asp:MenuItem>
+                    </asp:MenuItem>
+                    <asp:MenuItem Text="BỘ PHẬN MỘT CỬA" Value="BỘ PHẬN MỘT CỬA"></asp:MenuItem>
+                    <asp:MenuItem Text="LIÊN HỆ" Value="LIÊN HỆ"></asp:MenuItem>
+                    <asp:MenuItem Text="ĐĂNG NHẬP" Value="ĐĂNG NHẬP"></asp:MenuItem>
+                </Items> 
+               
+                
+            </asp:Menu>--%>
+                <%--<ul id ="menu2">
+                    <li><a href = #><i class="fa fa-user" aria-hidden="true"></i> Đăng nhập</a></li>
+                </ul>--%>
+               <%--<asp:Menu id="menu2" runat="server" Orientation="Horizontal" cssclass="menu2" >
+                    <Items>
+                        <asp:MenuItem text="đăng nhập" value="đăng nhập"></asp:MenuItem>
+                    </Items>
+              </asp:Menu>--%>
+            </div>
+            <div id ="clockTop">
+                <script>
+                    getTime();
+                </script>
+                <span class ="phoneWeb" style ="margin-left: 70px">
+                    Điện thoại: 0238.3855.452 - 0238.8988.989
+                </span>
+                <asp:TextBox ID="txtTimKiem" runat="server" Width="300px"></asp:TextBox><i class="fa fa-search" aria-hidden="true"></i>
+            </div>
+            <div id ="menumiddle">
+                <a href ="#">
+                    <img src="Images/tuyensinh-00.png" onmouseover ="this.src = 'Images/tuyensinh-04.png'" onmouseout
+                        ="this.src='Images/tuyensinh-00.png'"/></a>
+            </div>
+            
+            <div id ="menubottom">
+                <table width="1000px" border = "1" cellspacing = "10" cellpadding="5" >
+                    <tr>
+                        <td>
+                            
+                            <a href = "#"><img src="Images/lich.png" /><br />
+                                Lịch tuần</a>
+                        </td>
+                        <td>
+                            
+                            <a href ="#"><img src="Images/email.png" /><br />Thư điện tử</a>
+                        </td>
+                        <td>
+                            <img src="Images/office.png" /><br />
+                            <a href="#">IOffice </a>
+                        </td>
+                        <td>
+                            
+                            <a href ="#"><img src="Images/vbdieuhanh.png" /><br />Văn bản điều hành</a>
+                        </td>
+                        <td>
+                            
+                            <a href ="#"><img src="Images/thuvien.png" /><br />Thư viện</a>
+                        </td>
+                        <td>
+                            
+                            <a href ="#"><img src="Images/elearning.png" /><br />E - Learning</a>
+                        </td>
+                        <td>
+                            
+                            <a href ="#"><img src="Images/dkhoc.png" /><br />Đăng ký học</a>
+                        </td>
+                        <td>
+                            
+                            <a href ="#">
+                                <img src="Images/diem.png" /><br />Thông báo điểm</a>
+                        </td>
+                        <td>
+                            
+                            <a href ="#"><img src="Images/hoidap.png" /><br />Hỏi đáp</a>
+
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div id ="mainContent">
+            <div id ="rightContent">
+                <h1>Tiêu đề bên phải</h1>
+                <div id ="noidungPhai">
+                    Nội dung bên phải
+                </div>
+            </div>
+            <div id ="leftContent">
+                <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+
+                </asp:ContentPlaceHolder>
+            </div>
+        </div>
+        <div id ="footer">
+            <div id ="footerContent">
+               Địa chỉ: 182 Lê Duẩn - Thành Phố Vinh - tỉnh Nghệ An<br />
+               Điện thoại: (0238)3855.452 - Fax: (0238)3855.269 - Email: vinhuni@vinhuni.edu.vn<br />
+               Nội dung được lấy từ "Cổng TT Đại học Vinh"  
+            </div>
+        </div>
+        
+    </form>
+</body>
+</html>

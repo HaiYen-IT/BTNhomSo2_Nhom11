@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CSDL_BTNModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Menu">
+    <Key>
+      <PropertyRef Name="IDMenu" />
+    </Key>
+    <Property Name="IDMenu" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="TenMenu" Type="nchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="TinTuc">
+    <Key>
+      <PropertyRef Name="IDTinTuc" />
+    </Key>
+    <Property Name="IDTinTuc" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TenTinTuc" Type="nchar" MaxLength="10" />
+    <Property Name="TieuDe" Type="nchar" MaxLength="10" />
+    <Property Name="NoiDung" Type="nchar" MaxLength="10" />
+    <Property Name="IDMenu" Type="nchar" MaxLength="10" />
+  </EntityType>
+  <EntityContainer Name="CSDL_BTNModelStoreContainer">
+    <EntitySet Name="Menu" EntityType="Self.Menu" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TinTuc" EntityType="Self.TinTuc" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

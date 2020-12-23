@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CSDL_BTNModel1" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Menu1">
+    <Key>
+      <PropertyRef Name="IDThanhPhan" />
+    </Key>
+    <Property Name="IDThanhPhan" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ID" Type="Int32" />
+    <Property Name="TenTP" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Menu2" Relationship="Self.FK_Menu1_Menu2" FromRole="Menu1" ToRole="Menu2" />
+  </EntityType>
+  <EntityType Name="Menu2">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IDMenu" Type="Int32" />
+    <Property Name="TenThanhPhan" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Menu1" Relationship="Self.FK_Menu1_Menu2" FromRole="Menu2" ToRole="Menu1" />
+    <NavigationProperty Name="Menu" Relationship="Self.FK_Menu2_Menus" FromRole="Menu2" ToRole="Menus" />
+  </EntityType>
+  <EntityType Name="Menu">
+    <Key>
+      <PropertyRef Name="IDMenu" />
+    </Key>
+    <Property Name="IDMenu" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TenMenu" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Menu2" Relationship="Self.FK_Menu2_Menus" FromRole="Menus" ToRole="Menu2" />
+    <NavigationProperty Name="TinTucs" Relationship="Self.FK_TinTucs_Menus" FromRole="Menus" ToRole="TinTucs" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="TinTuc">
+    <Key>
+      <PropertyRef Name="IDTinTuc" />
+    </Key>
+    <Property Name="IDTinTuc" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IDMenu" Type="Int32" Nullable="false" />
+    <Property Name="TieuDe" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="NoiDung" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Image" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Menu" Relationship="Self.FK_TinTucs_Menus" FromRole="TinTucs" ToRole="Menus" />
+  </EntityType>
+  <Association Name="FK_Menu1_Menu2">
+    <End Role="Menu2" Type="Self.Menu2" Multiplicity="0..1" />
+    <End Role="Menu1" Type="Self.Menu1" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Menu2">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Menu1">
+        <PropertyRef Name="ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Menu2_Menus">
+    <End Role="Menus" Type="Self.Menu" Multiplicity="0..1" />
+    <End Role="Menu2" Type="Self.Menu2" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Menus">
+        <PropertyRef Name="IDMenu" />
+      </Principal>
+      <Dependent Role="Menu2">
+        <PropertyRef Name="IDMenu" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TinTucs_Menus">
+    <End Role="Menus" Type="Self.Menu" Multiplicity="1" />
+    <End Role="TinTucs" Type="Self.TinTuc" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Menus">
+        <PropertyRef Name="IDMenu" />
+      </Principal>
+      <Dependent Role="TinTucs">
+        <PropertyRef Name="IDMenu" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="CSDL_BTNEntities2" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Menu1" EntityType="Self.Menu1" />
+    <EntitySet Name="Menu2" EntityType="Self.Menu2" />
+    <EntitySet Name="Menus" EntityType="Self.Menu" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="TinTucs" EntityType="Self.TinTuc" />
+    <AssociationSet Name="FK_Menu1_Menu2" Association="Self.FK_Menu1_Menu2">
+      <End Role="Menu2" EntitySet="Menu2" />
+      <End Role="Menu1" EntitySet="Menu1" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Menu2_Menus" Association="Self.FK_Menu2_Menus">
+      <End Role="Menus" EntitySet="Menus" />
+      <End Role="Menu2" EntitySet="Menu2" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TinTucs_Menus" Association="Self.FK_TinTucs_Menus">
+      <End Role="Menus" EntitySet="Menus" />
+      <End Role="TinTucs" EntitySet="TinTucs" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

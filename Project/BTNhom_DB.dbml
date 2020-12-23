@@ -1,0 +1,118 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="BTNhom_DB" Class="BTNhom_DBDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=.;Initial Catalog=BTNhom_DB;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="BTNhom_DBConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.DanhMuc" Member="DanhMucs">
+    <Type Name="DanhMuc">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TenDanhMuc" Type="System.String" DbType="NChar(200)" CanBeNull="true" />
+      <Column Name="ParentID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="DanhMuc_BaiViet" Member="BaiViets" ThisKey="ID" OtherKey="ID" Type="BaiViet" />
+    </Type>
+  </Table>
+  <Table Name="dbo.BaiViet" Member="BaiViets">
+    <Type Name="BaiViet">
+      <Column Name="IDBaiViet" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TieuDe" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="NoiDung" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Association Name="DanhMuc_BaiViet" Member="DanhMuc" ThisKey="ID" OtherKey="ID" Type="DanhMuc" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Login" Member="Logins">
+    <Type Name="Login">
+      <Column Name="IDDangNhap" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="UserName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="PassWord" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Function Name="dbo.DanhMuc_Update" Method="DanhMuc_Update">
+    <Parameter Name="NoiDung" Parameter="noiDung" Type="System.String" DbType="NVarChar(200)" />
+    <Parameter Name="IDDanhMuc" Parameter="iDDanhMuc" Type="System.Int32" DbType="Int" />
+    <Parameter Name="IDDanhMucCha" Parameter="iDDanhMucCha" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.DanhMuc_Insert" Method="DanhMuc_Insert">
+    <Parameter Name="NoiDung" Parameter="noiDung" Type="System.String" DbType="NVarChar(200)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.DanhMuc_Delete" Method="DanhMuc_Delete">
+    <Parameter Name="IDDanhMuc" Parameter="iDDanhMuc" Type="System.Int32" DbType="Int" />
+    <Parameter Name="IDDanhMucCha" Parameter="iDDanhMucCha" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.DangNhap_Search" Method="DangNhap_Search">
+    <Parameter Name="user" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="pass" Type="System.String" DbType="NVarChar(50)" />
+    <ElementType Name="DangNhap_SearchResult">
+      <Column Name="IDDangNhap" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="UserName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="PassWord" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.BaiViet_UPDATE" Method="BaiViet_UPDATE">
+    <Parameter Name="TieuDe" Parameter="tieuDe" Type="System.String" DbType="NVarChar(200)" />
+    <Parameter Name="NoiDung" Parameter="noiDung" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="ID" Parameter="iD" Type="System.Int32" DbType="Int" />
+    <Parameter Name="IDBaiViet" Parameter="iDBaiViet" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.BaiViet_SelectID" Method="BaiViet_SelectID">
+    <Parameter Name="IDBaiViet" Parameter="iDBaiViet" Type="System.Int32" DbType="Int" />
+    <ElementType Name="BaiViet_SelectIDResult">
+      <Column Name="IDBaiViet" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TieuDe" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="NoiDung" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.BaiViet_SelectAll" Method="BaiViet_SelectAll">
+    <ElementType Name="BaiViet_SelectAllResult">
+      <Column Name="IDBaiViet" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TieuDe" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="NoiDung" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.BaiViet_Select" Method="BaiViet_Select">
+    <Parameter Name="ID" Parameter="iD" Type="System.Int32" DbType="Int" />
+    <ElementType Name="BaiViet_SelectResult">
+      <Column Name="IDBaiViet" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TieuDe" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="NoiDung" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.BaiViet_Insert" Method="BaiViet_Insert">
+    <Parameter Name="ID" Parameter="iD" Type="System.Int32" DbType="Int" />
+    <Parameter Name="TieuDe" Parameter="tieuDe" Type="System.String" DbType="NVarChar(200)" />
+    <Parameter Name="NoiDung" Parameter="noiDung" Type="System.String" DbType="NVarChar(MAX)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.BaiViet_SelectHome" Method="BaiViet_SelectHome">
+    <ElementType Name="BaiViet_SelectHomeResult">
+      <Column Name="IDBaiViet" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TieuDe" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="NoiDung" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.DanhMuc_SelectID" Method="DanhMuc_SelectID">
+    <Parameter Name="ID" Parameter="iD" Type="System.Int32" DbType="Int" />
+    <ElementType Name="DanhMuc_SelectIDResult">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TenDanhMuc" Type="System.String" DbType="NChar(200)" CanBeNull="true" />
+      <Column Name="ParentID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.BaiViet_DanhMuc" Method="BaiViet_DanhMuc">
+    <Parameter Name="iddanhmuc" Type="System.Int32" DbType="Int" />
+    <ElementType Name="BaiViet_DanhMucResult">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TenDanhMuc" Type="System.String" DbType="NChar(200)" CanBeNull="true" />
+      <Column Name="ParentID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="IDBaiViet" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ID1" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TieuDe" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="NoiDung" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+</Database>

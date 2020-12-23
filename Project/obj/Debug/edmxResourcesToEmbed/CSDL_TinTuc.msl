@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="CSDL_BTNModelStoreContainer" CdmEntityContainer="CSDL_BTNEntities">
+    <EntitySetMapping Name="Menus">
+      <EntityTypeMapping TypeName="CSDL_BTNModel.Menu">
+        <MappingFragment StoreEntitySet="Menu">
+          <ScalarProperty Name="IDMenu" ColumnName="IDMenu" />
+          <ScalarProperty Name="TenMenu" ColumnName="TenMenu" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TinTucs">
+      <EntityTypeMapping TypeName="CSDL_BTNModel.TinTuc">
+        <MappingFragment StoreEntitySet="TinTuc">
+          <ScalarProperty Name="IDTinTuc" ColumnName="IDTinTuc" />
+          <ScalarProperty Name="TenTinTuc" ColumnName="TenTinTuc" />
+          <ScalarProperty Name="TieuDe" ColumnName="TieuDe" />
+          <ScalarProperty Name="NoiDung" ColumnName="NoiDung" />
+          <ScalarProperty Name="IDMenu" ColumnName="IDMenu" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
